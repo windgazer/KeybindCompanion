@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget
+	xmlns       ="http://www.w3.org/ns/widgets"
+	xmlns:gap   = "http://phonegap.com/ns/1.0"
+	height      ="480"
+	width       ="640"
+	viewmodes   ="floating fullscreen maximized windowed"
+	id          = "nl.windgazer.%safeName%"
+	versionCode ="%buildVersion%"
+	version     = "%version%">
+	<name short="%name%">%fullName%</name>
+	<description>%description%</description>
+	<author email="%email%"
+		href="http://oss.windgazer.nl/%safeName%/">
+		%author%
+	</author>
+	<preference name="orientation" value="default" />
+	<preference name="fullscreen" value="true" />
+	<preference name="splash-screen-duration" value="1000" />
+	<gap:splash src="assets/icon.png" />
+	<preference name="permissions" value="none"/>
+	<license href="http://windgazer.nl/casual">
+		The Casual License, Copyright (c) 2015 Windgazer.nl
+
+		As long as this software is not formally published and versioned
+		as version 1.0.0 as the minimum version, full protection by
+		copyright is retained with the owner (Windgazer.nl).
+		Until such time as this software is published by the owner, only
+		the owner may distribute copies of the software and such copies
+		are deemed for personal use only.
+		With exception towards the statement of fitness and warranty
+		this license may be voided by a later release and licensing of
+		this software and will be retroactively superceeded by any such
+		license where law can enforce such action. The following statement
+		of fitness and warranty must always be retained:
+
+		THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF
+		ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+		WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+		AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+		HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+		WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+		FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+		OTHER DEALINGS IN THE SOFTWARE.
+	</license>
+	<content src="index.html"></content>
+	<icon src="assets/icon.png" width="128" height="128"></icon>
+</widget>

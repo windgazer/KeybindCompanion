@@ -225,6 +225,41 @@ module.exports = function(grunt) {
                 }
             }
         },
+        sass: {
+            options: {
+                loadPath: [
+                    "libs"
+                ],
+            },
+            std: {
+                options: {
+                    style: "compressed"
+                },
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    cwd: "<%= pkg.files.sass.cwd %>",
+                    src: ["<%= pkg.files.sass.src %>"],
+                    dest: "<%= pkg.files.sass.dest %>",
+                    ext: ".css"
+                }]
+            },
+            dev: {
+                options: {
+                    style: "expanded",
+                    lineNumbers: true,
+                    debugInfo: true
+                },
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    cwd: "<%= pkg.files.sass.cwd %>",
+                    src: ["<%= pkg.files.sass.src %>"],
+                    dest: "<%= pkg.files.sass.dest %>",
+                    ext: ".css"
+                }]
+            }
+        },
         useminPrepare: {
             options: {
                 dest: "target/release/",
@@ -234,15 +269,30 @@ module.exports = function(grunt) {
         },
         usemin: {
             html: ["target/release/index.html"]
+        },
+        watch: {
+            sass: {
+                // We watch and compile sass files as normal but don"t live reload here
+                files: ["<%= pkg.files.watch.sass.files %>"],
+                tasks: ["<%= pkg.files.watch.sass.tasks %>"]
+            },
+            livereload: {
+                // Here we watch the files the sass task will compile to
+                // These files are sent to the live reload server after sass compiles to them
+                options: { livereload: true },
+                files: ["<%= pkg.files.watch.livereload.files %>"]
+            }
         }
     });
 
     // Default task.
+    grunt.registerTask("default", ["sass:dev"]);
     grunt.registerTask(
         "install",
         [
             "clean:release",
             "jshint",
+            "sass:std",
             "mkdir",
             "copy:release",
             "useminPrepare",

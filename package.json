@@ -6,6 +6,22 @@
     "description": "A companiong application to run on a device or second screen to show your keybinds.",
     "id": "12345678"
   },
+  "files": {
+    "sass": {
+        "cwd": "css/sass/",
+        "src": ["**/*.scss", "!**/_*.scss"],
+        "dest": "css/compiled/"
+    },
+    "watch": {
+        "sass": {
+            "files": ["css/sass/*.scss"],
+            "tasks": ["sass:dev"]
+        },
+        "livereload": {
+            "files": ["css/compiled/*","code/*","*.html"]
+        }
+    }
+  },
   "author": {
       "name": "Martin Reurings",
       "email": "martin@windgazer.nl",
@@ -24,7 +40,9 @@
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-cssmin": "^0.12.2",
     "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-sass": "^0.5.0",
     "grunt-contrib-uglify": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-filerev": "^2.2.0",
     "grunt-git": "^0.3.4",
     "grunt-http": "^1.6.0",

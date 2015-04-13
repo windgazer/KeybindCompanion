@@ -1,6 +1,43 @@
 @import url(http://fonts.googleapis.com/css?family=Indie+Flower);
 
+* {
+    border-color: inherit;
+    border-radius: 0.25em;
+}
+
 body {
     font-family: 'Indie Flower', cursive;
-    background: blue;
+    background: black;
+    color: white;
+    border-color: white;
+}
+
+// svg {
+//     fill: currentColor;
+//     fill-opacity: 0.5;
+//     stroke: currentColor;
+//     stroke-opacity: 1;
+//     stroke-width: 0.5;
+// }
+
+.kb_tartarus > svg {
+    width: 21em;
+}
+
+.keyboard > ol {
+    counter-reset: kb_layout;
+}
+
+.keyboard > ol > li {
+    counter-increment: kb_layout;
+    display: inline-block;
+    border: 0.1em solid;
+    width: 2.8em;
+    height: 2.8em;
+    text-align: center;
+}
+
+.keyboard > ol > li::before {
+    content: counter(kb_layout);
+    display: block;
 }

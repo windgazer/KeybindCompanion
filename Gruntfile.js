@@ -210,6 +210,17 @@ module.exports = function(grunt) {
                 dest: "target/release/phonegapdev.response.json"
             }
         },
+        "http-server": {
+            dev: {
+                root: "./",
+                port: 8282,
+                host: "0.0.0.0",
+                showDir: true,
+                autoIndex: true,
+                ext: "html",
+                runInBackground: true
+            }
+        },
         jshint: {
             gruntfile: {
                 src: "Gruntfile.js"
@@ -223,6 +234,11 @@ module.exports = function(grunt) {
                 options: {
                     create: ["target"]
                 }
+            }
+        },
+        open: {
+            dev: {
+                path: "http://127.0.0.1:8282/"
             }
         },
         sass: {
@@ -287,6 +303,7 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask("default", ["sass:dev"]);
+    grunt.registerTask("host", ["sass:dev","http-server:dev","open:dev","watch"]);
     grunt.registerTask(
         "install",
         [

@@ -1,4 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+$positionClassName: pos;
+$mt-menuWidth: 4em;
+
+%headerFont {
+    font-family: "qs42reg", sans-serif;
+}
+@import "sasstricks/utils";
+@import "simplematerial/material";
 
 * {
     border-color: inherit;
@@ -50,9 +58,22 @@ body {
     }
 }
 
-.kb_tartarus > dl {
+%kb_tartarus {
     background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20315%20395%22%3E%3Cpath%20fill%3D%22white%22%20fill-opacity%3D%220.5%22%20stroke%3D%22white%22%20stroke-width%3D%220.5%22%20d%3D%22m10%2C33.5l105%2C-29l115.5%2C6l11%2C25c0%2C0%20-2%2C60%20-12%2C118l1.5%2C0c5%2C-25%206%2C-35%209%2C-70l8%2C-13l2%2C-18l24.5%2C11.5l17%2C71l-8%2C51.5l-10.5%2C17l5.5%2C4l8%2C26l20.5%2C6.5l5%2C15.5c1%2C3%20-22%2C18%20-61.5%2C33.5l-4%2C-3l-4.5%2C-37.5l-13%2C13l-11%2C0.5l-10%2C5.5l11%2C75.5l-36%2C37c-36%2C19%20-119%2C10%20-139%2C-19l-32.5%2C-51l32%2C-102l19.5%2C-21l-45.5%2C-16c-4.5%2C-7%20-16%2C-93%20-16%2C-111l8.5%2C-26.5%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E);
     background-repeat: no-repeat;
+}
+
+li.kb_tartarus {
+    @extend %kb_tartarus;
+    background-position: 50% 50%;
+    & > a {
+        overflow: hidden;
+        text-indent: -100em;
+    }
+}
+
+.kb_tartarus > dl {
+    @extend %kb_tartarus;
     width: (3.2em * 5);
     padding: 3em 7em 19em 2em;
     margin: 6em 10em 0;
@@ -89,4 +110,8 @@ body {
         left: -1em;
         margin-top: 6.5em;
     }
+}
+
+body > .keyboard {
+    background-color: #444;
 }

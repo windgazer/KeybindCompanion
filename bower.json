@@ -2,5 +2,7 @@
   "name": "Keybind Companion",
   "version": "0.0.1",
   "main": "index.html",
-  "dependencies": {}
+  "dependencies": {
+    "SimpleMaterial": "git@github.com:Windgazer-Freelance/simplematerial.git#~0.0.1"
+  }
 }

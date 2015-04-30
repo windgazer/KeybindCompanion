@@ -42,6 +42,21 @@ module.exports = function(grunt) {
                     }
                 ]
             },
+            ghpages: {
+                files: [
+                    {
+                        expand: true,
+                        flatten: false,
+                        cwd: "target/release/",
+                        src: [
+                            "assets/**.*",
+                            "**/*.min.*",
+                            "*.html"
+                        ],
+                        dest: "target/pages.git/"
+                    }
+                ]
+            },
             push: {
                 files: [
                     {
@@ -93,6 +108,16 @@ module.exports = function(grunt) {
                     src: ["."]
                 }
             },
+            ghpages: {
+                options: {
+                    all: true,
+                    cwd: "target/pages.git/",
+                    force: false
+                },
+                files: {
+                    src: ["."]
+                }
+            },
             source: {
                 options: {
                     all: true,
@@ -112,6 +137,15 @@ module.exports = function(grunt) {
                     repository: "<%= pkg.repository.url %>",
                     directory: "release.git"
                 }
+            },
+            ghpages: {
+                options: {
+                    cwd: "target/",
+                    branch: "gh-pages",
+                    depth: 1,
+                    repository: "<%= pkg.repository.url %>",
+                    directory: "pages.git"
+                }
             }
         },
         gitcheckout: {
@@ -126,6 +160,16 @@ module.exports = function(grunt) {
                 options: {
                     cwd: "target/release.git/",
                     message: "Releasing v<%= pkg.version %> build <%= buildVersion %>",
+                    allowEmpty: true //In case of no changes since last dev build...
+                },
+                files: {
+                    src: ["."]
+                }
+            },
+            ghpages: {
+                options: {
+                    cwd: "target/pages.git/",
+                    message: "Releasing v<%= pkg.version %>-src build <%= buildVersion %>",
                     allowEmpty: true //In case of no changes since last dev build...
                 },
                 files: {
@@ -149,6 +193,14 @@ module.exports = function(grunt) {
                     branch: "release",
                     tags: true
                 }
+            },
+            ghpages: {
+                options: {
+                    cwd: "target/pages.git/",
+                    remote: "origin",
+                    branch: "gh-pages",
+                    tags: true
+                }
             }
         },
         gitstash: {
@@ -168,6 +220,12 @@ module.exports = function(grunt) {
             source: {
                 options: {
                     tag: "v<%= pkg.version %>-src"
+                }
+            },
+            ghpages: {
+                options: {
+                    cwd: "target/pages.git/",
+                    tag: "v<%= pkg.version %>-docs"
                 }
             },
             dev: {
@@ -337,6 +395,17 @@ module.exports = function(grunt) {
             grunt.task.run("releasedev");
         }
     });
+    grunt.registerTask(
+        "ghpages",
+        [
+            "releaseprep",
+            "gitclone:ghpages",
+            "copy:ghpages",
+            "gitadd:ghpages",
+            "gitcommit:ghpages",
+            "gitpush:ghpages"
+        ]
+    );
     grunt.registerTask(
         "releaselive",
         [
